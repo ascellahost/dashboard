@@ -5,7 +5,7 @@ import type { Handle, GetSession, RequestEvent } from '@sveltejs/kit'
 // Invoked for each endpoint called and initially for SSR router
 export const handle: Handle = async ({ event, resolve }) => {
     const cookies = cookie.parse(event.request.headers.get("cookie") || '');
-    const jwt = cookies.jwt && btoa(cookies.jwt);
+    const jwt = cookies.jwt && atob(cookies.jwt);
     event.locals.user = jwt ? JSON.parse(jwt) : null;
     const response = await resolve(event)
 
