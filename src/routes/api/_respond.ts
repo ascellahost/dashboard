@@ -4,7 +4,7 @@ export function respond(body, response) {
     }
 
     const json = JSON.stringify(body);
-    const value = Buffer.from(json).toString('base64');
+    const value = btoa(json);
 
     return {
         headers: {
