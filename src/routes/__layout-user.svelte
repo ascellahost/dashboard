@@ -33,10 +33,10 @@
 
 <div class="flex">
 	<div
-		class="menu bg-base-100 w-64 border-l-8 border-primary text-white text-lg min-h-screen flex flex-col"
+		class="menu menu-compact lg:menu-normal bg-base-100 w-64 border-l-8 border-primary text-white text-lg min-h-screen flex flex-col"
 	>
 		<ul class="pt-4">
-			<div class="flex place-items-center font-bold">
+			<div class="flex place-items-center font-bold p-2">
 				<img src="https://ascella.host/logo.svg" class="h-16 w-16" alt="" /> Ascella.host
 			</div>
 			<li class="menu-title">

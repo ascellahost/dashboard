@@ -17,11 +17,6 @@
 	export let user: User;
 </script>
 
-<!-- <GridItem>
-	<div slot="title">Language</div>
-	<div slot="text">{user.lang}</div>
-</GridItem> -->
-
 <GridItem cols={'3'} rows={'2'}>
 	<div class="flex flex-col justify-center items-center">
 		<img

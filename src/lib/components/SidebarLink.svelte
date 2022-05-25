@@ -8,7 +8,10 @@
 </script>
 
 <li class="hover-bordered">
-	<a {href} class={`link no-underline link-hover ${active ? 'link-secondary' : ''}`}>
+	<a
+		{href}
+		class={`link no-underline link-hover ${active ? 'active bg-primary/50 text-secondary' : ''}`}
+	>
 		<svelte:component this={icon} height={'1em'} />
 		{text}
 	</a>
