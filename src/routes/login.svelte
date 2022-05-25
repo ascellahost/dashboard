@@ -1,4 +1,7 @@
 <script context="module" lang="ts">
+	// TODO: add random colors
+	// TODO: add embed links
+
 	import type { Load } from '@sveltejs/kit';
 	export const load: Load = ({ session }) => {
 		if (session.user?.discord_id) {

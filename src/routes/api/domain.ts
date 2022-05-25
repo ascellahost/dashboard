@@ -19,6 +19,5 @@ export async function post(request) {
     });
     let t = await domainResponse.text();
     let json = await r.json();
-    console.log(t);
     return respond({ ...json }, { ...JSON.parse(t) });
 }

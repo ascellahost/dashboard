@@ -18,5 +18,8 @@ declare namespace App {
 		user?: Structs["Users"]
 	}
 
-	// interface Stuff {}
+	interface Stuff {
+		user?: Structs["Users"]
+
+	}
 }

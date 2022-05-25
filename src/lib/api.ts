@@ -7,6 +7,7 @@ interface Options {
 }
 //@ts-ignore -
 export async function do_req<T = keyof Structs>(fetch: any, path: string, options: Options): Promise<Structs[T]> {
+    options.headers = { ...options.headers, "content-type": "application/json" }
     let res = await fetch(`https://ascella.wtf/v2/ascella/${path}`, options) as Response;
     if (res.ok) {
         return await res.json();

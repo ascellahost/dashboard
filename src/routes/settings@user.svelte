@@ -15,12 +15,19 @@
 
 <script lang="ts">
 	import type { Structs, User } from '$lib/api_types';
-	import EmptyGridItem from '$lib/components/EmptyGridItem.svelte';
-	import { current_component } from 'svelte/internal';
 	export let user: User;
 	export let domains: Structs['Domain'][];
 	let current_domain: Structs['Domain'] | undefined;
 	let current_subdomain: string | undefined;
+
+	let loading = false;
+	let error: undefined | string = undefined;
+
+	let title: string;
+	let description: string;
+	let color: string;
+	let author: string;
+	let url_append: string;
 </script>
 
 <GridItem>
@@ -54,20 +61,77 @@
 	</div>
 
 	<button
-		class="btn"
+		class={`btn ${loading ? 'loading' : ''}`}
 		on:click|preventDefault={async (e) => {
+			loading = true;
 			await fetch('/api/domain', {
 				method: 'post',
 				body: JSON.stringify({
 					auth: user.upload_key,
-					domain:
+					domain: `https://${
 						current_subdomain && current_domain?.apex
 							? `${current_subdomain}.${current_domain}`
 							: current_domain?.domain
+					}`
 				})
 			});
+			loading = false;
 		}}
 	>
 		Submit
 	</button>
+</GridItem>
+<GridItem rows={'2'} cols={'2'}>
+	<div class="grid gap-4 grid-cols-2">
+		<input
+			type="text"
+			placeholder="title"
+			class="input input-bordered input-secondary col-span-2"
+			bind:value={title}
+		/>
+		<input
+			type="text"
+			placeholder="description"
+			class="input input-bordered input-secondary"
+			bind:value={description}
+		/>
+		<input
+			type="text"
+			placeholder="color (HEX)"
+			class="input input-bordered input-secondary"
+			bind:value={color}
+		/>
+		<input
+			type="text"
+			placeholder="author"
+			class="input input-bordered input-secondary"
+			bind:value={author}
+		/>
+		<input
+			type="text"
+			placeholder="url apppend"
+			class="input input-bordered input-secondary"
+			bind:value={url_append}
+		/>
+	</div>
+	<button
+		class={`btn mt-4 ${loading ? 'loading' : ''}`}
+		on:click={async () => {
+			loading = true;
+			await do_req(fetch, 'embed', {
+				method: 'post',
+				headers: {
+					authorization: `${user.upload_key}`
+				},
+				body: JSON.stringify({
+					author,
+					color,
+					description,
+					url: url_append,
+					title
+				})
+			});
+			loading = false;
+		}}>Update</button
+	>
 </GridItem>
