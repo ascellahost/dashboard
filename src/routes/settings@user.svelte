@@ -66,6 +66,9 @@
 			loading = true;
 			await fetch('/api/domain', {
 				method: 'post',
+				headers: {
+					authorization: `${user.upload_key}`
+				},
 				body: JSON.stringify({
 					auth: user.upload_key,
 					domain: `https://${

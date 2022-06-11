@@ -64,6 +64,7 @@
 					});
 					if (res.ok) {
 						goto('/');
+						window.location.href = "/"
 					} else {
 						failed = true;
 						loading = false;

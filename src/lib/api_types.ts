@@ -391,7 +391,7 @@ export interface components {
       /** Format: int32 */
       id: number;
       vanity: string;
-    };
+    }[];
     /** @description View stats of a image */
     StatsResponse: {
       content_type: string;
